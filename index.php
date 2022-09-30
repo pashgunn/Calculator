@@ -22,8 +22,6 @@
         <button type="submit" name="operation" value="*">*</button>
         <button type="submit" name="operation" value="/">/</button>
     </div>
-
-    <p id="result"></p>
 </form>
 </body>
 </html>
@@ -37,13 +35,12 @@ require 'CalculatorView.php';
 $model = new Calculator();
 $view = new CalculatorView();
 $controller = new CalculatorController($model,$view);
-$operation = $_POST["operation"];
 
-if (isset($operation)) {
+if (isset($_POST["operation"])) {
     $controller->setFirstArgument($_POST['num1']);
     $controller->setSecondArgument($_POST['num2']);
 
-    switch ($operation) {
+    switch ($_POST["operation"]) {
         case "+":
             $controller->onPlusClicked();
             break;
