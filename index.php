@@ -28,5 +28,3 @@
     <p id="result"></p>
 
 </form>
-</body>
-</html>

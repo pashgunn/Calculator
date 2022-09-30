@@ -1,7 +1,10 @@
 <?php
 
-class CalculatorView implements CalculatorViewInterface
+class CalculatorView  implements CalculatorViewInterface
 {
+    public float $firstArgument;
+    public float $secondArgument;
+
     public function printResult(float $result): void
     {
         echo $result;
@@ -14,13 +17,11 @@ class CalculatorView implements CalculatorViewInterface
 
     public function getFirstArgumentAsString(): string
     {
-        $firsrArgument =1;
-        return $firsrArgument;
+        return $this->firstArgument;
     }
 
     public function getSecondArgumentAsString(): string
     {
-        $firsrArgument =2;
-        return $firsrArgument;
+        return $this->secondArgument;
     }
 }
