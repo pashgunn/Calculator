@@ -7,7 +7,7 @@ class CalculatorView  implements CalculatorViewInterface
 
     public function printResult(float $result): void
     {
-        echo $result;
+        echo "Result: " . $result;
     }
 
     public function displayError(string $message): void

@@ -9,19 +9,20 @@
 
     <!-- поле ввода первого числа -->
     <label for="num1">First number:</label><br>
-    <input type="text" id="num1" name="num1" required/><br>
+    <input type="text" id="num1" name="num1" required/><br><br>
 
     <!-- поле ввода второго числа -->
     <label for="num2">Second number:</label><br>
-    <input type="text" id="num2" name="num2" required/><br>
+    <input type="text" id="num2" name="num2" required/><br><br>
 
     <!-- блок с кнопками -->
+    <label for="operation">Type of operation:</label><br>
     <div>
         <button type="submit" name="operation" value="+">+</button>
         <button type="submit" name="operation" value="-">-</button>
         <button type="submit" name="operation" value="*">*</button>
         <button type="submit" name="operation" value="/">/</button>
-    </div>
+    </div><br>
 </form>
 </body>
 </html>
@@ -36,11 +37,13 @@ $model = new Calculator();
 $view = new CalculatorView();
 $controller = new CalculatorController($model,$view);
 
-if (isset($_POST["operation"])) {
+if (isset($_POST["operation"]))
+{
     $controller->setFirstArgument($_POST['num1']);
     $controller->setSecondArgument($_POST['num2']);
 
-    switch ($_POST["operation"]) {
+    switch ($_POST["operation"])
+    {
         case "+":
             $controller->onPlusClicked();
             break;

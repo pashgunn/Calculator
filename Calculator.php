@@ -22,7 +22,7 @@ class Calculator implements CalculatorInterface
     /*
      * throws ArithmeticException if |b| < 10e-8
      */
-    public function divide(float $a, float $b): float|string
+    public function divide(float $a, float $b)
     {
         try {
             if (abs($b) < pow(10, -8)){
