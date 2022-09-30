@@ -1,5 +1,7 @@
 <?php
 
+require 'CalculatorInterface.php';
+
 class Calculator implements CalculatorInterface
 {
     public function sum(float $a, float $b): float

@@ -1,27 +1,56 @@
 <?php
 
+use JetBrains\PhpStorm\Pure;
+
+require 'CalculatorPresenterInterface.php';
+
 class CalculatorPresenter implements CalculatorPresenterInterface
 {
-    public Calculator $calc;
-    public CalculatorView $view;
+    private Calculator $model;
+    private CalculatorView $view;
 
-    public function onPlusClicked(): void
+    /**
+     * @param Calculator $model
+     */
+    public function setModel(Calculator $model): void
     {
-        $this->calc->sum((float)$this->view->getFirstArgumentAsString(), (float)$this->view->getSecondArgumentAsString());
+        $this->model = $model;
     }
 
-    public function onMinusClicked(): void
+    /**
+     * @param CalculatorView $view
+     */
+    public function setView(CalculatorView $view): void
     {
-
+        $this->view = $view;
     }
 
-    public function onMultiplyClicked(): void
+    #[Pure] public function onPlusClicked(): void
     {
+        $firstArgument = (float)$this->view->getFirstArgumentAsString();
+        $secondArgument = (float)$this->view->getSecondArgumentAsString();
+        $result = $this->model->sum($firstArgument, $secondArgument);
+        $this->view->printResult($result);
+    }
 
+    #[Pure] public function onMinusClicked(): void
+    {
+        $firstArgument = (float)$this->view->getFirstArgumentAsString();
+        $secondArgument = (float)$this->view->getSecondArgumentAsString();
+        $this->model->subtract($firstArgument, $secondArgument);
+    }
+
+    #[Pure] public function onMultiplyClicked(): void
+    {
+        $firstArgument = (float)$this->view->getFirstArgumentAsString();
+        $secondArgument = (float)$this->view->getSecondArgumentAsString();
+        $this->model->multiply($firstArgument, $secondArgument);
     }
 
     public function onDivideClicked(): void
     {
-
+        $firstArgument = (float)$this->view->getFirstArgumentAsString();
+        $secondArgument = (float)$this->view->getSecondArgumentAsString();
+        $this->model->divide($firstArgument, $secondArgument);
     }
 }
