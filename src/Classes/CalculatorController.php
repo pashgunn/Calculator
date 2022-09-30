@@ -1,5 +1,7 @@
 <?php
 
+namespace App;
+
 require 'CalculatorPresenterInterface.php';
 
 class CalculatorController implements CalculatorPresenterInterface

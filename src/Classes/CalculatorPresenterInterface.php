@@ -1,5 +1,7 @@
 <?php
 
+namespace App;
+
 interface CalculatorPresenterInterface
 {
     public function onPlusClicked(): void;

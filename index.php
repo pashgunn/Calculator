@@ -29,9 +29,12 @@
 
 <?php
 
-require 'CalculatorController.php';
-require 'Calculator.php';
-require 'CalculatorView.php';
+
+use App\Calculator;
+use App\CalculatorController;
+use App\CalculatorView;
+
+require "vendor/autoload.php";
 
 $model = new Calculator();
 $view = new CalculatorView();

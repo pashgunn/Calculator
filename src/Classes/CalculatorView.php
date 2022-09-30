@@ -1,5 +1,7 @@
 <?php
 
+namespace App;
+
 require 'CalculatorViewInterface.php';
 
 class CalculatorView  implements CalculatorViewInterface

@@ -1,5 +1,7 @@
 <?php
 
+namespace App;
+
 interface CalculatorViewInterface
 {
     public function printResult(float $result): void;

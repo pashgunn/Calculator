@@ -1,5 +1,9 @@
 <?php
 
+namespace App;
+
+use Exception;
+
 require 'CalculatorInterface.php';
 
 class Calculator implements CalculatorInterface
@@ -19,18 +23,16 @@ class Calculator implements CalculatorInterface
         return $a * $b;
     }
 
-    /*
-     * throws ArithmeticException if |b| < 10e-8
+
+    /**
+     * @throws Exception
      */
     public function divide(float $a, float $b)
     {
-        try {
-            if (abs($b) < pow(10, -8)){
-                throw new Exception("ArithmeticException");
-            }
+        if (abs($b) < pow(10, -8)) {
+            throw new Exception("ArithmeticException");
+        } else {
             return $a / $b;
-        } catch (Exception $e) {
-            return $e->getMessage();
         }
     }
 }
