@@ -17,10 +17,10 @@
 
     <!-- блок с кнопками -->
     <div>
-        <input type="submit" name="oper" value="+" />
-        <input type="submit" name="oper" value="-" />
-        <input type="submit" name="oper" value="*" />
-        <input type="submit" name="oper" value="/" />
+        <input type="submit" name="oper" value="+"/>
+        <input type="submit" name="oper" value="-"/>
+        <input type="submit" name="oper" value="*"/>
+        <input type="submit" name="oper" value="/"/>
     </div>
 
     <p id="result"></p>
@@ -32,5 +32,23 @@
 $num1 = $_POST["num1"];
 $num2 = $_POST["num2"];
 $oper = $_POST["oper"];
-echo $num1 . " " . $num2 . " " . $oper;
+
+switch ($oper) {
+    case "+":
+        $result = $num1 + $num2;
+        echo "Result:" . $result;
+        break;
+    case "-":
+        $result = $num1 - $num2;
+        echo "Result:" . $result;
+        break;
+    case "*":
+        $result = $num1 * $num2;
+        echo "Result:" . $result;
+        break;
+    case "/":
+        $result = $num1 / $num2;
+        echo "Result:" . $result;
+        break;
+}
 ?>
