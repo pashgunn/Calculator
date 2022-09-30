@@ -11,20 +11,17 @@
     <label for="num1">First number:</label><br>
     <input type="text" id="num1" name="num1" required/><br>
 
-    <!-- блок с кнопками -->
-    <div>
-        <input type="radio" name="oper" value="plus" />+ <br>
-        <input type="radio" name="oper" value="minus" />- <br>
-        <input type="radio" name="oper" value="mult" />* <br>
-        <input type="radio" name="oper" value="div" />/ <br>
-    </div>
-
     <!-- поле ввода второго числа -->
     <label for="num2">Second number:</label><br>
     <input type="text" id="num2" name="num2" required/><br>
 
-    <!-- кнопка для рассчётов -->
-    <button type="submit" name="submit">Посчитать</button>
+    <!-- блок с кнопками -->
+    <div>
+        <input type="submit" name="oper" value="+" />
+        <input type="submit" name="oper" value="-" />
+        <input type="submit" name="oper" value="*" />
+        <input type="submit" name="oper" value="/" />
+    </div>
 
     <p id="result"></p>
 </form>
