@@ -17,10 +17,10 @@
 
     <!-- блок с кнопками -->
     <div>
-        <input type="submit" name="oper" value="+"/>
-        <input type="submit" name="oper" value="-"/>
-        <input type="submit" name="oper" value="*"/>
-        <input type="submit" name="oper" value="/"/>
+        <button type="submit" name="operation" value="+">+</button>
+        <button type="submit" name="operation" value="-">-</button>
+        <button type="submit" name="operation" value="*">*</button>
+        <button type="submit" name="operation" value="/">/</button>
     </div>
 
     <p id="result"></p>
@@ -29,26 +29,33 @@
 </html>
 
 <?php
-$num1 = $_POST["num1"];
-$num2 = $_POST["num2"];
-$oper = $_POST["oper"];
 
-switch ($oper) {
-    case "+":
-        $result = $num1 + $num2;
-        echo "Result:" . $result;
-        break;
-    case "-":
-        $result = $num1 - $num2;
-        echo "Result:" . $result;
-        break;
-    case "*":
-        $result = $num1 * $num2;
-        echo "Result:" . $result;
-        break;
-    case "/":
-        $result = $num1 / $num2;
-        echo "Result:" . $result;
-        break;
+require 'CalculatorController.php';
+require 'Calculator.php';
+require 'CalculatorView.php';
+
+$model = new Calculator();
+$view = new CalculatorView();
+$controller = new CalculatorController($model,$view);
+$operation = $_POST["operation"];
+
+if (isset($operation)) {
+    $controller->setFirstArgument($_POST['num1']);
+    $controller->setSecondArgument($_POST['num2']);
+
+    switch ($operation) {
+        case "+":
+            $controller->onPlusClicked();
+            break;
+        case "-":
+            $controller->onMinusClicked();
+            break;
+        case "*":
+            $controller->onMultiplyClicked();
+            break;
+        case "/":
+            $controller->onDivideClicked();
+            break;
+    }
 }
 ?>

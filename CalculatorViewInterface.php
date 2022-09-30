@@ -6,7 +6,4 @@ interface CalculatorViewInterface
 
     public function displayError(string $message): void;
 
-    public function getFirstArgumentAsString(): string;
-
-    public function getSecondArgumentAsString(): string;
 }
