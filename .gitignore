@@ -1,5 +1,7 @@
-composer.phar
-composer.lock
+vendor
+*.iml
+.idea
 .phpunit.result.cache
 composer.json
-vendor
+composer.lock
+composer.phar
