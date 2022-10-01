@@ -17,28 +17,11 @@ class CalculatorTest extends TestCase
         $this->calculator = new Calculator();
     }
 
-    protected function tearDown(): void
-    {
-
-    }
-
-//    /**
-//     * @dataProvider calculatorProvider
-//     */
     public function testSum()
     {
         $this->assertEquals(5, $this->calculator->sum(1,4));
     }
 
-    public function calculatorProvider(): array
-    {
-        return [
-//            [5, $this->calculator->sum(1,4)],
-//            [1, $this->calculator->sum(1,0)],
-//            [2, $this->calculator->sum(1,4)],
-//                [33, $this->calculator->sum(10,23)]
-        ];
-    }
 
     public function testDivideException()
     {

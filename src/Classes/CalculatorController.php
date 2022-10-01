@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Exception;
+
 require 'CalculatorPresenterInterface.php';
 
 class CalculatorController implements CalculatorPresenterInterface
@@ -61,6 +63,9 @@ class CalculatorController implements CalculatorPresenterInterface
         $this->view->printResult($result);
     }
 
+    /**
+     * @throws Exception
+     */
     public function onDivideClicked(): void
     {
         $first = (float)$this->getFirstArgumentAsString();
