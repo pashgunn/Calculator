@@ -9,7 +9,10 @@ class CalculatorView  implements CalculatorViewInterface
 
     public function printResult(float $result): void
     {
-        echo "Result: " . $result;
+        $result = "
+        <label for=\"result\">Result:</label>
+        <output type=\"text\"  id=\"result\" name=\"result\">$result</output>";
+        echo $result;
     }
 
     public function displayError(string $message): void
