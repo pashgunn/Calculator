@@ -4,25 +4,20 @@ namespace Calculator;
 
 require 'vendor/autoload.php';
 
-use Facebook\WebDriver\Chrome\ChromeDriver;
 use PHPUnit\Framework\TestCase;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\WebDriverBy;
+use Facebook\WebDriver\Remote\RemoteWebDriver;
 
 class ChromeDriverTest extends TestCase
 {
-
-    protected ChromeDriver $driver;
-
-    public function build_chrome_capabilities(): DesiredCapabilities
-    {
-        return DesiredCapabilities::chrome();
-    }
+    protected RemoteWebDriver $driver;
 
     public function setUp(): void
     {
-        putenv('WEBDRIVER_CHROME_DRIVER=C:\bin\chromedriver.exe');
-        $this->driver = ChromeDriver::start();
+        $serverUrl = 'http://localhost:4444';
+        $capabilities = DesiredCapabilities::chrome();
+        $this->driver = RemoteWebDriver::create($serverUrl, $capabilities);
     }
 
     public function tearDown(): void
@@ -30,26 +25,35 @@ class ChromeDriverTest extends TestCase
         $this->driver->quit();
     }
 
-    public function testDivision()
+    public function templatedTest($value1, $value2, $operation, $expected)
     {
-        $this->driver->get("http://calculator/");
+        $url = 'http://localhost:63342/Calculator/index.php';
+        $this->driver->get($url);
         $this->driver->manage()->window()->maximize();
         $element = $this->driver->findElement(WebDriverBy::name("num1"));
         if($element) {
-            $element->sendKeys("1");
+            $element->sendKeys($value1);
             sleep(1);
         }
         $element = $this->driver->findElement(WebDriverBy::name("num2"));
         if($element) {
-            $element->sendKeys("2");
+            $element->sendKeys($value2);
             sleep(1);
         }
-        $element = $this->driver->findElement(WebDriverBy::id("-"));
+        $element = $this->driver->findElement(WebDriverBy::id($operation));
         if($element) {
             $element->click();
             sleep(1);
         }
         $element = $this->driver->findElement(WebDriverBy::name("result"));
-        $this->assertEquals(-1, $element->getText());
+        $this->assertEquals($expected, $element->getText());
+    }
+
+    public function tests()
+    {
+        $this->templatedTest(5, 2, "+", 7);
+        $this->templatedTest(5, 2, "-", 3);
+        $this->templatedTest(5, 2, "*", 10);
+        $this->templatedTest(5, 2, "/", 2.5);
     }
 }
