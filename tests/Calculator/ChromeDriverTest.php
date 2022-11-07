@@ -11,7 +11,7 @@ use Facebook\WebDriver\Remote\RemoteWebDriver;
 
 class ChromeDriverTest extends TestCase
 {
-    protected RemoteWebDriver $driver;
+    private RemoteWebDriver $driver;
 
     public function setUp(): void
     {
@@ -25,28 +25,52 @@ class ChromeDriverTest extends TestCase
         $this->driver->quit();
     }
 
-    public function templatedTest($value1, $value2, $operation, $expected)
-    {
+    // support functions
+
+    public function openPage(){
         $url = 'http://localhost:63342/Calculator/index.php';
         $this->driver->get($url);
         $this->driver->manage()->window()->maximize();
+    }
+
+    public function inputFirstNum($value1){
         $element = $this->driver->findElement(WebDriverBy::name("num1"));
         if($element) {
             $element->sendKeys($value1);
             sleep(1);
         }
+    }
+
+    public function inputSecondNum($value2){
         $element = $this->driver->findElement(WebDriverBy::name("num2"));
         if($element) {
             $element->sendKeys($value2);
             sleep(1);
         }
+    }
+
+    public function chooseOperation($operation){
         $element = $this->driver->findElement(WebDriverBy::id($operation));
         if($element) {
             $element->click();
             sleep(1);
         }
+    }
+
+    public function check($expected){
         $element = $this->driver->findElement(WebDriverBy::name("result"));
         $this->assertEquals($expected, $element->getText());
+    }
+
+    // tests
+
+    public function templatedTest($value1, $value2, $operation, $expected)
+    {
+        $this->openPage();
+        $this->inputFirstNum($value1);
+        $this->inputSecondNum($value2);
+        $this->chooseOperation($operation);
+        $this->check($expected);
     }
 
     public function tests()
